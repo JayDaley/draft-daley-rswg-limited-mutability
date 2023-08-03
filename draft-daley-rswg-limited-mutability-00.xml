@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-model href="rfc7991bis.rnc"?>
+
+<!DOCTYPE rfc [
+  <!ENTITY nbsp    "&#160;">
+  <!ENTITY zwsp   "&#8203;">
+  <!ENTITY nbhy   "&#8209;">
+  <!ENTITY wj     "&#8288;">
+]>
+
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="info"
+  docName="draft-daley-rswg-limited-mutability-00" ipr="trust200902" obsoletes=""
+  updates="2026 8153 9280" submissionType="editorial" xml:lang="en" version="3">
+
+  <front>
+    <title abbrev="Limited Mutability for RFCs">Limited Mutability for RFCs</title>
+
+    <seriesInfo name="Internet-Draft" value="draft-daley-rswg-limited-mutability-00"/>
+
+    <author fullname="Jay Daley" initials="J." surname="Daley">
+      <!-- all of the following elements are optional -->
+      <organization>IETF Administration LLC</organization>
+      <address>
+        <postal>
+          <!-- Reorder these if your country does things differently -->
+          <street>1000 N West St, Ste 1200</street>
+          <city>Wilmington</city>
+          <region>Delaware</region>
+          <code>19801</code>
+          <country>US</country>
+          <!-- Uses two letter country code -->
+        </postal>
+        <email>jay@staff.ietf.org</email>
+      </address>
+    </author>
+
+    <date year="2023"/>
+    <!-- On draft subbmission:
+         * If only the current year is specified, the current day and month will be used.
+         * If the month and year are both specified and are the current ones, the current day will
+           be used
+         * If the year is not the current one, it is necessary to specify at least a month and day="1" will be used.
+    -->
+
+    <area>RFC Editor</area>
+    <workgroup>RFC Series Working Group</workgroup>
+    <keyword>immutability</keyword>
+    <abstract>
+      <t>This document, in response to the changed environment in which RFCs are now produced,
+        proposes a new principle of limited mutability for the RFC Series that allows the publishing
+        of new versions of RFCs, rescinding the principle of immutability currently applied to the
+        RFC Series.</t>
+    </abstract>
+    <note removeInRFC="true">
+      <name>About This Document</name>
+      <t> The latest revision of this draft can be found at <eref
+          target="https://github.com/JayDaley/draft-daley-rswg-limited-mutability"/>. Status
+        information for this document may be found at <eref
+          target="https://datatracker.ietf.org/doc/draft-daley-rswg-limited-mutability/"/>. </t>
+      <t> Discussion of this document takes place on the RFC Series Working Group Editorial Stream
+        Working Group mailing list (<eref target="mailto:rswg@rfc-editor.org"/>), which is archived
+        at <eref target="https://mailarchive.ietf.org/arch/browse/rswg/"/>. </t>
+      <t>Source for this draft and an issue tracker can be found at <eref
+          target="https://github.com/JayDaley/draft-daley-rswg-limited-mutability"/>.</t>
+    </note>
+
+  </front>
+
+  <middle>
+
+    <section>
+      <name>Introduction</name>
+      <section>
+        <name>Principle of Immutability</name>
+        <t>The RFC Series has a long established principle of immutability as documented in <xref
+            section="2.1" sectionFormat="of" target="RFC2026"/>, <xref section="2.2"
+            sectionFormat="of" target="RFC8153"/> and <xref section="7.6" sectionFormat="of"
+            target="RFC9280"/>.</t>
+
+        <t>This principle was entirely appropriate when the series first began. The process for
+          authoring and publishing an RFC was lightweight and, as those initial RFCs were typed up
+          and distributed in hard copy, it was neither practical nor necessary to issue corrected
+          versions. Even after RFCs switched to an electronic format, for many years the process for
+          authoring and publishing an RFC was sufficiently lightweight that any serious error in an
+          RFC could be corrected by publishing a new RFC.</t>
+      </section>
+      <section>
+        <name>Changed Environment</name>
+        <t>The environment around the RFC Series has gradually transitioned and is now very
+          different in three key aspects:</t>
+        <ol>
+          <li><t>For the bulk of RFCs, the process for authoring and publishing is now intentionally
+              a heavyweight process. This change began most notably with RFC 2026 and continued with
+              many subsequent updates to the process. RFC 2026 set out some principles that
+              determined the need for a heavier weight process, two of which are particularly
+              relevant here:</t>
+            <ul>
+              <li>technical excellence;</li>
+              <li>clear, concise, and easily understood documentation;</li>
+            </ul></li>
+          <li>The collection and verification of errata began in 2000, though not formally
+            documented in an RFC until RFC 7322 in 2014, and the verification process has been
+            refined a number of times since. At the time of writing there are now 2944 verified
+            errata, ranging in seriousness from simple spelling errors through to errors in the text
+            that completely invert the intended meaning. This is in addition to another 2069
+            reported errata that have been identified as suitable for consideration in future
+            updates of the document.</li>
+          <li>The expectations and technology for managing, distributing and consuming documents,
+            and new versions of documents, has evolved significantly. Of particular note to the IETF
+            is that there is now an increasing push for all technical documents to become more and
+            more like code - computer readable including the semantic structure, and tracked in
+            version control systems. The RFC Series has responded directly to this with the switch
+            to XML as the canonical source publication format for RFCs, and the extensive use of
+            GitHub by authors.</li>
+        </ol>
+      </section>
+      <section>
+        <name>The Problems</name>
+        <t>The RFC Series now faces a number of problems relating to immutability.</t>
+        <t>The first and most serious of these is that there are many published RFCs that are known
+          to contain serious errors and are being actively used by implementers and others who are
+          entirely unaware of this. While there have been experiments in displaying RFCs with inline
+          errata, no serious attempts have been made to ensure that implementers or other consumers
+          of RFCs are not misled by these errors. This current position violates the two principles
+          from RFC 2026 above - RFCs with known serious errors are neither technically excellent nor
+          easily understood.</t>
+        <t>The second is that the use of XML as the canonical source format has created a new
+          “layer” to the RFCs, the markup layer, that has its own set of issues and opportunities
+          including:</t>
+        <ul>
+          <li>errors in the XML that do not affect the content of the RFC;</li>
+          <li>use of XML constructs, features or libraries that become defunct;</li>
+          <li>potential for adding new XML markup that enhances the computer readability of an RFC
+            without changing the content;</li>
+          <li>errors in the published formats of RFCs that are rendered from the canonical source
+            XML;</li>
+          <li>potential for amending/enhancing the rendered formats.</li>
+        </ul>
+      </section>
+
+      <section>
+        <name>Requirements Language</name>
+        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD
+          NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
+          interpreted as described in BCP 14 <xref target="RFC2119"/>
+          <xref target="RFC8174"/> when, and only when, they appear in all capitals, as shown
+          here.</t>
+      </section>
+    </section>
+
+    <section>
+      <name>New Principle</name>
+      <section>
+        <name>Limited Mutability</name>
+        <t>The new principle for the RFC Series is limited mutability, which replaces the previous
+          principle of immutability. This principle is stated as follows:</t>
+        <t><em>With limitations, and solely to maintain either the correctness of the content, or
+            the utility of the metadata, markup, layout and renderings, of an RFC, a new version of
+            an RFC or a new version of an existing rendering, MAY be published, replacing the
+            previously published RFC or rendering.</em></t>
+        <section>
+          <name>Key Definitions</name>
+          <t>The key definitions of terms in this principle are as follows:</t>
+          <ul>
+            <li>A new version of an RFC is defined as a new version of the canonical source, where
+              any combination of the content, metadata, markup and layout changes. The nature of the
+              canonical source depends on the specific RFC. For example, for some it is an RFCXML
+              file, for others a plain text file and for others a plain text transcription of a
+              typewritten document.</li>
+            <li>A rendering of an RFC is any published format derived from the canonical
+              source.</li>
+          </ul>
+        </section>
+        <section>
+          <name>Limitations</name>
+          <t>The general limitation of this principle is to restrict publication of new versions to
+            the only those absolutely necessary to maintain correctness and utility, which leads to
+            the following more detailed limitations:</t>
+          <ul>
+            <li>Content changes MUST only be the verbatim application of verified errata.</li>
+            <li>Publishing new versions of an RFC solely for the application of editorial errata
+              SHOULD be avoided. Exceptional circumstances could include a full republication of all
+              RFCs, or an RFC with multiple editorial errata such that the quality suffers.</li>
+            <li>New versions of an RFC MUST NOT be published for an RFC designated as historic or
+              obsolete. New versions of an RFC MAY be published for an RFC whose status is
+              unknown.</li>
+            <li>New versions of an RFC or new versions of a rendering of an RFC SHOULD NOT be
+              published so often that it risks undermining the reputation or utility of the series.
+              There may be exceptional circumstances whereby it is agreed that a risk to the
+              reputation of the series is acceptable. </li>
+            <li>A new version of a rendering of an RFC, where the canonical source of that RFC has
+              not changed since the last version of the rendering, MUST NOT have any change in
+              content, except to correct a discrepancy in the content between the rendering and the
+              canonical source.</li>
+            <li>Publishing a new version of an RFC or a new version of a rendering of an RFC where
+              nothing changes except the version number, SHOULD be avoided. There may be exceptional
+              circumstances where this is necessary.</li>
+          </ul>
+        </section>
+        <section>
+          <name>Correctness and Utility</name>
+          <t>Correctness and utility are measured as follows, though more detailed or more
+            applicable measures may be developed over time:</t>
+          <ul>
+            <li>The correctness of content SHOULD be measured against the long-standing Internet
+              standards principles of ‘technical excellence’ and ‘easily understood’.</li>
+            <li>The utility of metadata, markup, layout and renderings SHOULD be measured against
+              the reasonable expectations of implementers, researchers and other common consumers of
+              RFCs, and the IETF community and RFC Editor function as producers of RFCs.</li>
+          </ul>
+        </section>
+        <section>
+          <name>Additional Notes</name>
+          <t>The following notes are provided to explain certain choices in the development of this
+            principle.</t>
+          <t>A specific minimum time period between publications is intentionally not provided as
+            this may change as expectations of RFC consumers change, and because it would need to be
+            different for different renderings. For example, the HTML or HTML-ised rendering of an
+            RFC could change much more frequently than the PDF rendering while still meeting the
+            limitations above.</t>
+          <t>Under this policy, when one RFC updates another that cannot result in a content change
+            in the updated RFC. Updates do not always specify the precise text to change and even
+            when they do, they rarely provide a clear statement of the new text. It would therefore
+            require an entirely new process to determine the exact text to change, which is out of
+            scope for this document.</t>
+        </section>
+        <section>
+          <name>Operational Implementation</name>
+          <t>This proposal intentionally leave several implementation details unspecified as these
+            are best considered operational matters for the RFC Editor to determine:</t>
+          <ul>
+            <li>Version naming scheme;</li>
+            <li>Archival process and archive access requirements;</li>
+            <li>New version notification and distribution process.</li>
+          </ul>
+        </section>
+      </section>
+    </section>
+
+    <section>
+      <name>Updates</name>
+      <t>This proposal would require updating <xref section="2.1" sectionFormat="parens"
+          target="RFC2026"/>, <xref section="2.2" sectionFormat="parens" target="RFC8153"/> and
+          <xref section="7.6" sectionFormat="parens" target="RFC9280"/> to note that RFCs are now
+        mutable in limited circumstances.</t>
+    </section>
+
+    <section anchor="IANA">
+      <name>IANA Considerations</name>
+      <t>This document includes no request to IANA.</t>
+    </section>
+
+    <section anchor="Security">
+      <name>Security Considerations</name>
+      <t>This document will enhance the security of the Internet by reducing the number of occasions
+        when an implementer is presented with an RFC with serious errors in it.</t>
+    </section>
+  </middle>
+
+  <back>
+    <references>
+      <name>References</name>
+      <references>
+        <name>Normative References</name>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
+      </references>
+
+      <references>
+        <name>Informative References</name>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2026.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8153.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9280.xml"/>
+      </references>
+    </references>
+
+    <section anchor="Acknowledgements" numbered="false">
+      <name>Acknowledgements</name>
+      <t>This document was only possible after many conversations with Alexis Rossi, Alice Russo,
+        Jean Mahoney. John Levine, Martin Thomson, Paul Hoffman, Robert Sparks and Sandy Ginoza.</t>
+    </section>
+
+  </back>
+</rfc>
