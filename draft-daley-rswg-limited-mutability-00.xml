@@ -46,13 +46,25 @@
     <workgroup>RFC Series Working Group</workgroup>
     <keyword>immutability</keyword>
     <abstract>
-      <t>This document, in response to the changed environment in which RFCs are now produced,
-        proposes a new principle of limited mutability for the RFC Series that allows the publishing
-        of new versions of RFCs, rescinding the principle of immutability currently applied to the
-        RFC Series.</t>
+      <t>The environment in which RFCs are produced has changed significantly since the inception of
+        the series: the process for producing RFCs is now a heavyweight process; there is a large
+        and growing set of errata, many with serious implications; and the expectations around the
+        use of RFCs have changed significantly as document technology has evolved. In this new
+        environment, the long-standing principle of immutability of RFCs, prevents the RFC Series
+        from achieving its goals of technical excellence and easily understood documentation. This
+        document addresses that by identifying a possible way forward of a new principle of limited
+        mutability for the RFC Series that allows the publishing of new versions of RFCs in limited
+        circumstances, replacing the principle of immutability.</t>
     </abstract>
     <note removeInRFC="true">
       <name>About This Document</name>
+      <t>This document is written by the IETF Executive Director, an employee of the IETF
+        Administration LLC, whose role excludes them from having any direct influence on the
+        Internet standards process. This document is intended as a discussion document for the RSWG
+        about the overall RFC Series, and therefore broader than the Internet standards process,
+        though inevitably it will have an influence on the Internet standards process if adopted.
+        Given that potential, the IETF Chair has given permission for this author to produce this
+        document as a discussion document.</t>
       <t>Status information for this document may be found at <eref
           target="https://datatracker.ietf.org/doc/draft-daley-rswg-limited-mutability/"/>. </t>
       <t> Discussion of this document takes place on the RFC Series Working Group Editorial Stream
@@ -88,10 +100,10 @@
           different in three key aspects:</t>
         <ol>
           <li><t>For the bulk of RFCs, the process for authoring and publishing is now intentionally
-              a heavyweight process. This change began most notably with RFC 2026 and continued with
-              many subsequent updates to the process. RFC 2026 set out some principles that
-              determined the need for a heavier weight process, two of which are particularly
-              relevant here:</t>
+              a heavyweight process. This change began most notably with <xref target="RFC2026"/>
+              and continued with many subsequent updates to the process. <xref target="RFC2026"/>
+              set out some principles that determined the need for a heavier weight process, two of
+              which are particularly relevant here:</t>
             <ul>
               <li>technical excellence;</li>
               <li>clear, concise, and easily understood documentation;</li>
@@ -148,6 +160,9 @@
 
     <section>
       <name>New Principle</name>
+      <t>The following new principle is presented as a possible way forward to address these
+        concerns, while avoiding a radical change to the RFC Series with all the implications of
+        such a change.</t>
       <section>
         <name>Limited Mutability</name>
         <t>The new principle for the RFC Series is limited mutability, which replaces the previous
@@ -222,25 +237,45 @@
             require an entirely new process to determine the exact text to change, which is out of
             scope for this document.</t>
         </section>
-        <section>
-          <name>Operational Implementation</name>
-          <t>This proposal intentionally leave several implementation details unspecified as these
-            are best considered operational matters for the RFC Editor to determine:</t>
-          <ul>
-            <li>Version naming scheme;</li>
-            <li>Archival process and archive access requirements;</li>
-            <li>New version notification and distribution process.</li>
-          </ul>
-        </section>
+      </section>
+    </section>
+
+    <section>
+      <name>Further Considerations</name>
+      <section>
+        <name>Operational Implementation</name>
+        <t>This document intentionally leave several implementation details unspecified as these are
+          best considered operational matters for the RFC Editor to determine:</t>
+        <ul>
+          <li>Version naming scheme;</li>
+          <li>Document name resolution;</li>
+          <li>Archival process and archive access requirements;</li>
+          <li>New version notification and distribution process.</li>
+        </ul>
+      </section>
+      <section>
+        <name>Potential Implications</name>
+        <t>Adoption of this new principle could to lead to the following:</t>
+        <ul>
+          <li>There is likely to be an impact on the policies and processes of third-party
+            organisations that archive the RFC Series.</li>
+          <li>The volume of errata reports and therefore the associated processing effort, is likely
+            to drop as it will be much less likely that someone reports an error that has already
+            been corrected.</li>
+          <li>Authors may be more likely to add less stable references than they do now, with the
+            expectation that these can be replaced if they break.</li>
+          <li>There could be more scrutiny on the errata verification process and more concerns
+            about community oversight, which may lead to a need for the process to be reviewed.</li>
+        </ul>
       </section>
     </section>
 
     <section>
       <name>Updates</name>
-      <t>This proposal would require updating <xref section="2.1" sectionFormat="parens"
-          target="RFC2026"/>, <xref section="2.2" sectionFormat="parens" target="RFC8153"/> and
-          <xref section="7.6" sectionFormat="parens" target="RFC9280"/> to note that RFCs are now
-        mutable in limited circumstances.</t>
+      <t>If this principle were adopted then that would mean updating <xref section="2.1"
+          sectionFormat="parens" target="RFC2026"/>, <xref section="2.2" sectionFormat="parens"
+          target="RFC8153"/> and <xref section="7.6" sectionFormat="parens" target="RFC9280"/> to
+        note that RFCs are now mutable in limited circumstances.</t>
     </section>
 
     <section anchor="IANA">
@@ -250,8 +285,9 @@
 
     <section anchor="Security">
       <name>Security Considerations</name>
-      <t>This document will enhance the security of the Internet by reducing the number of occasions
-        when an implementer is presented with an RFC with serious errors in it.</t>
+      <t>The implementation of the new principle identified in this document would enhance the
+        security of the Internet by reducing the number of occasions when an implementer is
+        presented with an RFC with serious errors in it.</t>
     </section>
   </middle>
 
@@ -275,7 +311,8 @@
     <section anchor="Acknowledgements" numbered="false">
       <name>Acknowledgements</name>
       <t>This document was only possible after many conversations with Alexis Rossi, Alice Russo,
-        Jean Mahoney. John Levine, Martin Thomson, Paul Hoffman, Robert Sparks and Sandy Ginoza.</t>
+        Jean Mahoney. John Levine, Martin Thomson, Paul Hoffman, Robert Sparks and Sandy Ginoza, and
+        email exchanges with Steve Crocker and Scott Bradner.</t>
     </section>
 
   </back>
